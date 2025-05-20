@@ -44,6 +44,12 @@
                     <p>{{ $post->content }}</p>
                     <a href="{{ route('posts.show', $post) }}">詳細</a>
                     <a href="{{ route('posts.edit', $post) }}">編集</a>
+
+                    <form action="{{ route('posts.destroy', $post) }}" method="post" onsubmit="return confirm('本当に削除してもよろしいですか？');">
+                        @csrf
+                        @method('delete')
+                        <button type="submit">削除</button>
+                    </form>
                 </article>
             @endforeach
         @else
