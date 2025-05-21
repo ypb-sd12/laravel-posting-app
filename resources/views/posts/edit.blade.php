@@ -111,5 +111,6 @@
             <label for="content">本文</label>
             <textarea name="content" id="content" class="form-control">{{ old('content', $post->content) }}</textarea>
         </div>
+        <button type="submit" class="btn btn-outline-primary">更新</button>
     </form>
 @endsection

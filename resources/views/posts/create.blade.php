@@ -103,7 +103,11 @@
         @csrf
         <div class="form-group mb-3">
             <label for="title">タイトル</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{ old('content') }}">
+            <input type="text" class="form-control" id="title" name="title" value="{{ old('title') }}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="content">本文</label>
+            <textarea name="content" id="content" class="form-control">{{ old('content') }}</textarea>
         </div>
         <button type="submit" class="btn btn-outline-primary">投稿</button>
     </form>
