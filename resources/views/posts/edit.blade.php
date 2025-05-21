@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang='ja'>
 
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <title>投稿編集</title>
-    <meta http-equiv='refresh' content='4; URL='> <!--画面自動更新-->
 
     {{-- Bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
@@ -81,4 +80,36 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> -->
+@extends('layouts.app')
+
+@section('title', '投稿編集')
+
+@section('content')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <div class="mb-2">
+        <a href="{{ route('posts.index') }}" class="text-decoration-none">&lt; 戻る</a>
+    </div>
+
+    <form action="{{ route('posts.update', $post) }}" method="post">
+        @csrf
+        @method('patch')
+        <div class="form-group mb-3">
+            <label for="title">タイトル</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $post->title) }}">
+        </div>
+        <div class="form-group mb-3">
+            <label for="content">本文</label>
+            <textarea name="content" id="content" class="form-control">{{ old('content', $post->content) }}</textarea>
+        </div>
+    </form>
+@endsection
